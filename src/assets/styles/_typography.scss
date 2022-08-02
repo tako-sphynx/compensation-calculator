@@ -1,0 +1,24 @@
+@include font-face(
+  SoraRegular,
+  "Sora-Regular.ttf",
+  "Sora-Regular.woff",
+  "Sora-Regular.woff2",
+  "Sora-Regular.eot",
+  "Sora-Regular.svg"
+);
+
+@include font-face(
+  SoraBold,
+  "Sora-Bold.ttf",
+  "Sora-Bold.woff",
+  "Sora-Bold.woff2",
+  "Sora-Bold.eot",
+  "Sora-Bold.svg"
+);
+
+.regular {
+  font-family: "SoraRegular", sans-serif;
+}
+.bold {
+  font-family: "SoraBold", sans-serif;
+}

@@ -1,0 +1,16 @@
+// Main Colors
+$metal: #2b303a;
+$metalDark: #111317;
+$metalMiddle: #7a818e;
+$metalLight: #e9edf4;
+$white: #ffffff;
+$red: #e1261c;
+$darkRed: #911812;
+$metal2: #3f4756;
+$metalLight1: #d3dae8;
+$metalLight2: #a7b7d8;
+
+// Gradient Styles
+$gradMetal: $metal 0%, $metal2 100%;
+$gradLightmetal: $metalLight1 0%, $metalLight2 100%;
+$gradRed: $darkRed 0%, $red 100%;

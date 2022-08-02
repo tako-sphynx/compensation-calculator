@@ -1,0 +1,52 @@
+// Font Sizes
+@mixin font($size, $lh) {
+  font-size: $size + px;
+  line-height: $lh + px;
+}
+
+// Font Family
+@mixin font-face($name, $ttf, $woff, $woff2, $svg, $eot) {
+  @font-face {
+    font-family: "#{$name}";
+    src: url("../fonts/#{$ttf}") format("truetype"),
+      url("../fonts/#{$woff}") format("woff"),
+      url("../fonts/#{$woff2}") format("woff2"),
+      url("../fonts/#{$svg}") format("svg"),
+      url("../fonts/#{$eot}") format("eot");
+    font-display: swap;
+  }
+}
+
+// Gradients
+@mixin gradient($deg, $colors) {
+  background: -webkit-linear-gradient($deg, $colors);
+  background: -moz-linear-gradient($deg, $colors);
+  background: -o-linear-gradient($deg, $colors);
+  background: linear-gradient($deg, $colors);
+}
+
+// Hover
+@mixin hover {
+  @media (min-width: 1025px) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Breakpoints
+@mixin mq($title) {
+  @if $title == desktop {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  } @else if $title == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $title == mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+}
