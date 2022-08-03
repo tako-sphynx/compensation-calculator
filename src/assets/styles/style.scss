@@ -13,7 +13,9 @@ body {
 .container {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 100px;
+  @include mq(laptop) {
+    max-width: 90%;
+  }
 }
 
 // Display Properties

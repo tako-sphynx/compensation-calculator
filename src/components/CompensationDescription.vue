@@ -75,16 +75,31 @@ export default {
 <style lang="scss" scoped>
 h1 {
   @include font(40, 50);
+  @include mq(laptop) {
+    @include font(30, 40);
+  }
 }
 .section-content {
   @include font(18, 30);
+  @include mq(laptop) {
+    @include font(15, 25);
+  }
+  @include mq(mobile) {
+    flex-direction: column;
+  }
   /deep/ a {
     color: $red;
   }
   &__left {
     padding-right: 40px;
+    @include mq(mobile) {
+      padding-right: 0;
+    }
     h2 {
       @include font(32, 35);
+      @include mq(laptop) {
+        @include font(25, 30);
+      }
     }
     .content-list {
       li {
@@ -121,9 +136,15 @@ h1 {
 
   &__right {
     .content-img {
+      width: 240px;
+      height: 180px;
+      @include mq(mobile) {
+        margin-top: 30px;
+        width: 100%;
+      }
       img {
-        width: 240px;
-        height: 180px;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         border-radius: 4px;
       }

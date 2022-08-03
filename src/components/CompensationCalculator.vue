@@ -75,16 +75,16 @@ export default {
       errorMsg: false,
       monthDays: 30,
 
-      dayComp: 0,
+      dayComp: 0, //Daily allowance
 
-      empCompDays: 0,
-      empCompAmount: 0,
+      empCompDays: 0, //The employer compensates days
+      empCompAmount: 0, //The employer compensates days
 
-      insCompDays: 0,
-      insCompAmount: 0,
+      insCompDays: 0, //The employer compensatation amount
+      insCompAmount: 0, //The insurance compensatation amount
 
-      totalCompAmount: 0,
-      totalCompDays: 0,
+      totalCompAmount: 0, //Total Compensation Amount
+      totalCompDays: 0, //Total Compensation Days
     };
   },
   watch: {
@@ -108,24 +108,31 @@ export default {
   methods: {
     calculateResult() {
       if (this.income && this.days) {
+        let notPaidDays = 3; //Because the first 3 days are not paid
         this.dayComp = (this.income * 0.7) / this.monthDays;
 
         if (this.days >= 4 && this.days <= 8) {
-          this.empCompDays = this.days;
-          this.empCompAmount = this.empCompDays * this.dayComp;
-        } else if (this.days > 8 && this.days <= 182) {
-          this.countCompensation(this.days);
-        } else if (this.days > 182 && this.days <= 240) {
-          if (this.checked) {
-            this.countCompensation(this.days);
-          } else {
-            this.countCompensation(182);
+          if (this.insCompDays && this.insCompAmount) {
+            this.insCompDays = 0;
+            this.insCompAmount = 0;
           }
-        } else if (this.days > 240) {
+          this.empCompDays = this.days - notPaidDays;
+          this.empCompAmount = this.empCompDays * this.dayComp;
+        } else if (this.days > 8 && this.days <= 190) {
+          // 182days + 8 dayss
+
+          this.countCompensation(this.days - notPaidDays);
+        } else if (this.days > 190 && this.days <= 248) {
           if (this.checked) {
-            this.countCompensation(240);
+            this.countCompensation(this.days - notPaidDays);
           } else {
-            this.countCompensation(182);
+            this.countCompensation(190 - notPaidDays);
+          }
+        } else if (this.days > 248) {
+          if (this.checked) {
+            this.countCompensation(248 - notPaidDays);
+          } else {
+            this.countCompensation(190 - notPaidDays);
           }
         } else {
           this.dayComp = 0;
@@ -143,7 +150,7 @@ export default {
     },
 
     countCompensation(days) {
-      this.empCompDays = 8;
+      this.empCompDays = 5;
       this.insCompDays = days - this.empCompDays;
 
       this.empCompAmount = this.dayComp * this.empCompDays;
@@ -161,6 +168,10 @@ export default {
   height: 100%;
   background-size: 100%;
   background-repeat: no-repeat;
+  @include mq(tablet) {
+    padding: 50px 0;
+    background-size: 100% 100%;
+  }
   &-tools {
     padding: 0 20px;
   }
@@ -180,9 +191,30 @@ export default {
     padding: 20px;
     border-top: 1px solid $metalLight;
     border-bottom: 1px solid $metalLight;
-
+    @include mq(mobile) {
+      grid-template-columns: auto;
+    }
     .result-item {
       text-align: center;
+      @include mq(mobile) {
+        &:not(:first-child) {
+          margin-top: 10px;
+        }
+      }
+      @include mq(mobile) {
+        &:nth-child(1) {
+          order: 1;
+        }
+        &:nth-child(2) {
+          order: 3;
+        }
+        &:nth-child(3) {
+          order: 2;
+        }
+        &:nth-child(4) {
+          order: 4;
+        }
+      }
       .font-12 {
         @include font(12, 15);
         color: $metalMiddle;
