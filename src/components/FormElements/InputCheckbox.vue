@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="checkbox-group">
-      {{ title }}
+      {{ name }}
       <input
         type="checkbox"
         v-model="checked"
@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-  props: ["title"],
+  props: ["name"],
   data() {
     return {
       checked: false,

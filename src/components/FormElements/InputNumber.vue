@@ -1,20 +1,21 @@
 <template>
   <div class="input-group flex column">
-    <label for="value">{{ title }}</label>
+    <label for="value">{{ name }}</label>
     <div class="input-group__item flex">
       <input
         v-model.number="value"
         @input="$emit('change', value)"
         type="number"
+        required
       />
-      <div class="input-name bold">{{ name }}</div>
+      <div class="input-name bold">{{ type }}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "name"],
+  props: ["name", "type"],
   data() {
     return {
       value: "",
@@ -55,6 +56,8 @@ export default {
       border-radius: 4px;
       padding-left: 10px;
       padding-right: 55px;
+      font-family: "SoraRegular", sans-serif;
+      @include font(18, 30);
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
