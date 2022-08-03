@@ -38,11 +38,15 @@
       </div>
       <div class="result-item">
         <div class="font-18 bold">{{ empCompAmount.toFixed(2) }}€</div>
-        <div class="font-12">Daily allowance <br />{{ dayComp }}€</div>
+        <div class="font-12">
+          Daily allowance <br />{{ dayComp.toFixed(2) }}€
+        </div>
       </div>
       <div class="result-item">
         <div class="font-18 bold">{{ insCompAmount.toFixed(2) }}€</div>
-        <div class="font-12">Daily allowance <br />{{ dayComp }}€</div>
+        <div class="font-12">
+          Daily allowance <br />{{ dayComp.toFixed(2) }}€
+        </div>
       </div>
     </div>
     <div class="calculator-total__result mt-20">
